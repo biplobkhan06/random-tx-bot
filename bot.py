@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 # Define your bot token here
-TOKEN = "6733620826:AAHCXfbFx0EajKs4g97eQ6tV8Wd8sEFiQso"
+TOKEN = "here bot token"
 
 # Create a bot instance
 bot = telebot.TeleBot(TOKEN)
