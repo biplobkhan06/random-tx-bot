@@ -17,7 +17,8 @@ TOKEN = "6733620826:AAHCXfbFx0EajKs4g97eQ6tV8Wd8sEFiQso"
 bot = telebot.TeleBot(TOKEN)
 
 min_with = 100
-max_with = 100000
+max_with = 10000
+post_channel = -1002049081909 # here you can add @username
 
 # Global variables for withdraw and miner states
 withdraw_state = False
@@ -95,7 +96,7 @@ def withdraw(message):
 
 <b>🔥 JOIN</b> ~ @USDTLEGITMININGBOT"""
 
-            bot.send_message(user_id, text, parse_mode="HTML", disable_web_page_preview=True)
+            bot.send_message(post_channel, text, parse_mode="HTML", disable_web_page_preview=True)
             time.sleep(random.randint(60, 300))  # Sleep for 1 to 5 minutes
 
     withdraw_thread = Thread(target=post_random_withdraw)
@@ -121,19 +122,19 @@ def miner(message):
     def post_random_miner():
         while miner_state:
             random_miner_text = get_random_miner(name, tx)
-            bot.send_message(user_id, random_miner_text, parse_mode="HTML", disable_web_page_preview=True)
+            bot.send_message(post_channel, random_miner_text, parse_mode="HTML", disable_web_page_preview=True)
             time.sleep(random.randint(60, 300))  # Sleep for 1 to 5 minutes
 
     miner_thread = Thread(target=post_random_miner)
     miner_thread.start()
-    bot.reply_to(message, "Mining initiated. Type /stop_miner to stop.")
+    bot.reply_to(message, "Miner initiated. Type /stop_miner to stop.")
 
 # Define the /stop_miner command handler
 @bot.message_handler(commands=['stop_miner'])
 def stop_miner(message):
     global miner_state
     miner_state = False
-    bot.reply_to(message, "Mining stopped.")
+    bot.reply_to(message, "Miner stopped.")
 
 if __name__ == '__main__':
     while True:
